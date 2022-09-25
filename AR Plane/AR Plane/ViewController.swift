@@ -39,6 +39,7 @@ class ViewController: UIViewController {
             let worldPosition = simd_make_float3(firstResult.worldTransform.columns.3)
             planeEntity = try! Entity.load(named: "toy_biplane")
             if let plane = planeEntity{
+                
                 placeObject(plane, at: worldPosition)
                 playAnimation()
             }
@@ -59,7 +60,7 @@ class ViewController: UIViewController {
     
     func setupAccelerometer(){
         if motionManager.isAccelerometerAvailable{
-            motionManager.accelerometerUpdateInterval = 1/60 //acceleromater updates will occur 60 times per sec
+            motionManager.accelerometerUpdateInterval = 1/60  //acceleromater updates will occur 60 times per sec
             motionManager.startAccelerometerUpdates(to: .main) { (accelerometerData, error) in
                 if let error = error{
                     print(error.localizedDescription)
@@ -68,7 +69,6 @@ class ViewController: UIViewController {
                 if let accelData = accelerometerData?.acceleration{
                     self.acceleromaterDidChange(acceleration: accelData)
                 }
-
             }
         }
     }
